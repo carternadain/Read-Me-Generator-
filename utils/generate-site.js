@@ -1,8 +1,8 @@
 // function that returns a license badge based on which license is passed in
 // If there is no license, it returns an empty string
 function renderLicenseBadge(license) {
-  let badge = '';
-  if(license === 'MIT') {
+  // let badge = '';
+  if(license == 'MIT') {
       badge = '![License MIT](https://img.shields.io/badge/License-MIT-yellow.svg)'
   } else if (license === 'Apache 2.0') {
       badge = '![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)'
@@ -17,8 +17,8 @@ function renderLicenseBadge(license) {
 // function that returns the license link
 // If there is no license, it returns an empty string
 function renderLicenseLink(license) {
-  let licenseLink = '';
-    if(license === 'MIT') {
+  // let licenseLink = '';
+    if(license == 'MIT') {
       licenseLink = 'https://opensource.org/licenses/MIT'
     } else if (license === 'Apache 2.0') {
       licenseLink = 'https://opensource.org/licenses/Apache-2.0'
@@ -33,8 +33,8 @@ function renderLicenseLink(license) {
 // function that returns the license section of README
 // If there is no license, it returns an empty string
 function renderLicenseSection(license) {
-  let licenseSection = ''
-  if(license === 'None') {
+  // let licenseSection = ''
+  if(license == 'None') {
     licenseSection = ''
   } else {
     licenseSection =
@@ -49,6 +49,9 @@ function generateReadme(answer) {
   // return"test"
   return`
   # ${answer.ProjectHeader}
+  
+  ### Description
+    ${answer.Description}
 
   ## Table of Contents:
   ###  * [Description](#description)
@@ -58,7 +61,7 @@ function generateReadme(answer) {
   ###  * [Contributing](#contributing)
   ###  * [Tests](#tests)
   ###  * [Questions](#questions)
-  ###  * [Credits](#credits)
+ 
   
   -------
 
@@ -69,23 +72,19 @@ function generateReadme(answer) {
   ${answer.installation}
 
   -------
-  ## ${renderLicenseSection(answer.license)} ${renderLicenseBadge(answer.license)}
-  ### ${renderLicenseLink(answer.license)}
+  ## ${renderLicenseSection(answer.license)}
+  ### ${renderLicenseBadge(answer.license)} ${renderLicenseLink(answer.license)}
   
-  -------
-
-  ### Contributors:
-  ### ${answer.contributions}
   -------
   ### Tests:
   ### Run the following commands in your terminal to test this app:
   ### ${answer.tests}
   -------
-  ### Credits:
-  ${answer.questions}
- ### Contact Information:
- *GitHub Username: ${answer.userName}
- 
+  ### Questions:
+  ### If you have any questions, you may contact me at either
+  ### Github: https://github.com/${answer.askMe}
+  ### or
+  ### Email: ${answer.email}
  
 `;
 }

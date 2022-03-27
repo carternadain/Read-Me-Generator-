@@ -42,12 +42,12 @@ const questions = [
      {
         type: 'input',
         name: 'installation',
-        message: 'Describe the installation process if any:?'
+        message: 'Describe the installation process if any?'
         },
         
         {
-        type: 'list',
-        name: 'liscense',
+        type: 'checkbox',
+        name: 'license',
         message: 'Choose which license you used for this project',
         choices: [
           'Apache',
@@ -58,12 +58,6 @@ const questions = [
           'Mozilla',
           'Open'
           ]
-        },
-
-        {
-        type: 'input',
-        name: 'contributing',
-        message: 'included contributors?'
         },
         
         {
@@ -76,11 +70,16 @@ const questions = [
         type: 'input',
         name: 'questions',
         message: 'What do I do if I have an issue? '
-     },
-     {
+       },
+      {
+       type: 'input',
+       name: 'askMe',
+       message: 'What is your Github username so others can reach you for questions?'
+      },
+      {
         type: 'input',
-        name: 'credits',
-        message: 'list all Collabarators, if any, add links to there github'
+        name: 'Email',
+        message: 'What is your email address (for questions on app)'
    },
   
 ];
