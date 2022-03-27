@@ -58,7 +58,6 @@ function generateReadme(answer) {
   ###  * [Usage](#usage)
   ###  * [Installation](#installation)
   ###  * [License](#license)
-  ###  * [Contributing](#contributing)
   ###  * [Tests](#tests)
   ###  * [Questions](#questions)
  
