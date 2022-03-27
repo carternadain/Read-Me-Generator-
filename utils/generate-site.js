@@ -45,47 +45,50 @@ function renderLicenseSection(license) {
 
 // function to generate the README.md
 function generateReadme(answer) {
+  console.log ('answer',answer)
+  // return"test"
   return`
-  # ${answer.title}
-
-  
-  ## ${renderLicenseSection(answer.license)} ${renderLicenseBadge(answer.license)}
-  ### ${renderLicenseLink(answer.license)}
+  # ${answer.ProjectHeader}
 
   ## Table of Contents:
   ###  * [Description](#description)
+  ###  * [Usage](#usage)
   ###  * [Installation](#installation)
-  ###  * [Usage](#license)
   ###  * [License](#license)
   ###  * [Contributing](#contributing)
   ###  * [Tests](#tests)
   ###  * [Questions](#questions)
+  ###  * [Credits](#credits)
   
   -------
-  ## Installation:
-  ### You must install the following for this app to function:
-  ### ${answer.installation}
-  -------
 
-  ## Usage:
+  ### Usage:
   ### ${answer.usage}
   -------
+  ### Installation
+  ${answer.installation}
 
-  ## Contributors:
+  -------
+  ## ${renderLicenseSection(answer.license)} ${renderLicenseBadge(answer.license)}
+  ### ${renderLicenseLink(answer.license)}
+  
+  -------
+
+  ### Contributors:
   ### ${answer.contributions}
   -------
-  ## Tests:
+  ### Tests:
   ### Run the following commands in your terminal to test this app:
   ### ${answer.tests}
   -------
-  ## Questions:
+  ### Credits:
   ${answer.questions}
  ### Contact Information:
- *GitHub Username: ${data.userName}
- *GitHub Email: ${data.userEmail}
+ *GitHub Username: ${answer.userName}
+ 
  
 `;
 }
 
 
-module.exports = generateReadme;
+module.exports = {generateReadme};

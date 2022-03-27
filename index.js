@@ -1,7 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs =require('fs');
-const generatePage = require('./utils/generate-site');
+const {generateReadme} = require('./utils/generate-site.js');
 const file = './readme/README.md'
 
 
@@ -32,13 +32,7 @@ const questions = [
           }
         }
       },
-      {
-        type: 'input',
-        name: 'table of contents ',
-        message: 'optional add a table of contents',
-       
-      },
-      
+     
       {
         type: 'input',
         name: 'usage',
@@ -47,32 +41,11 @@ const questions = [
      
      {
         type: 'input',
-        name: 'contributing',
-        message: 'Who are the contributors of this projects?'
-        },
-        {
-        type: 'input',
-        name: 'tests',
-        message: 'Is there a test included?'
+        name: 'installation',
+        message: 'Describe the installation process if any:?'
         },
         
         {
-          type: 'input',
-          name: 'installation',
-          message: 'Describe the installation process if any:',
-         
-        },
-        {
-        type: 'input',
-        name: 'questions',
-        message: 'What do I do if I have an issue? '
-     },
-     {
-        type: 'input',
-        name: 'credits',
-        message: 'list all Collabarators, if any, add links to there github'
-        },
-     {
         type: 'list',
         name: 'liscense',
         message: 'Choose which license you used for this project',
@@ -85,13 +58,40 @@ const questions = [
           'Mozilla',
           'Open'
           ]
-    },
-];    
+        },
+
+        {
+        type: 'input',
+        name: 'contributing',
+        message: 'included contributors?'
+        },
+        
+        {
+          type: 'input',
+          name: 'tests',
+          message: 'Is there a test included?',
+         
+        },
+        {
+        type: 'input',
+        name: 'questions',
+        message: 'What do I do if I have an issue? '
+     },
+     {
+        type: 'input',
+        name: 'credits',
+        message: 'list all Collabarators, if any, add links to there github'
+   },
+  
+];
    
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-  const pageReadMe = generatePage(data);
+  console.log ("fileName",fileName)
+  console.log ('data',data)
+  const pageReadMe = generateReadme(data);
+  console.log ('pageReadMe',pageReadMe)
   fs.writeFile(fileName, pageReadMe, err => {
       if (err) throw new Error(err);
       console.log('👐  README SUCCESSFUL! click on the README file in this directory');
