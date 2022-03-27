@@ -1,8 +1,8 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs =require('fs');
-const { writeFile, copyFile } = require('./utils/generate-site');
-const { type } = require('os');
+const { writeFile, copyFile } = require('./utils/generate-site').default;
+
 
 const promptUser = () => {
     return inquirer.prompt([
@@ -38,13 +38,6 @@ const promptUser = () => {
         message: 'optional add a table of contents',
        
       },
-     
-      {
-        type: 'input',
-        name: 'installation',
-        message: 'Describe the installation process if any:',
-       
-      },
       
       {
         type: 'input',
@@ -62,7 +55,13 @@ const promptUser = () => {
         name: 'tests',
         message: 'Is there a test included?'
         },
-
+        
+        {
+          type: 'input',
+          name: 'installation',
+          message: 'Describe the installation process if any:',
+         
+        },
         {
         type: 'input',
         name: 'questions',
@@ -92,19 +91,24 @@ const promptUser = () => {
         console.log(responses);
     });
 };
-promptUser();
-     
+
+promptUser()
+.then(promptProject)
+.then(readMe => {
+  return generatePage(readMe);
+})
+.then(pageHTML => {
+  return writeFile(pageHTML);
+})
+.then(writeFileResponse => {
+  console.log(writeFileResponse);
+  return copyFile();
+})
+.then(copyFileResponse => {
+  console.log(copyFileResponse);
+})
+.catch(err => {
+  console.log(err);
+});
   
-//     // Async function using util.promisify 
-//   async function init() {
-//     try {
-//         // Ask user questions and generate responses
-//         const answers = await promptUser();
-//         const generateContent = generateReadme(answers);
-//         // Write new README.md to dist directory
-//         await writeFileAsync('./dist/README.md', generateContent);
-//         console.log('✔️  Successfully wrote to README.md');
-//     }   catch(err) {
-//         console.log(err);
-//     }
-// 
+

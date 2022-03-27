@@ -14,13 +14,53 @@ function renderLicenseSection(license) {}
 function generateReadme(data) {
   return `# ${data.title}
 
+  ${data.licenseBadge}
+
+---
+## Description
+ ${answers.description}
+## Table of Contents
+1.[Description](#description)
+2. [Installation](#installation)
+3. [Usage](#usage)
+4. [License](#license)
+5. [Contributing](#contributing)
+6. [Tests](#tests)
+7. [Questions](#questions)
 
 
 
+## Installation
+ ${answers.installation}
 
 
-  
+ ## Usage
+ ${answers.usage}
+
+
+ ## License
+![badge](https://img.shields.io/badge/license-${answers.license}-brightgreen)
+
+This application is covered by the ${answers.license} license. 
+
+
+## Contributing
+ ${answers.contributing}
+
+
+
+## Tests
+ ${answers.tests}
+
+
+
+## Questions
+ ${answers.questions}
+ ### Contact Information:
+ *GitHub Username: ${data.userName}
+ *GitHub Email: ${data.userEmail}
+ 
 `;
 }
 
-module.exports = generateReadme;
+export default generateReadme;
