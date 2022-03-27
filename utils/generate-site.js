@@ -1,7 +1,3 @@
-// packages needed for this application
-const fs = require('fs');
-const inquirer = require('inquirer');
-
 // function that returns a license badge based on which license is passed in
 // If there is no license, it returns an empty string
 function renderLicenseBadge(license) {
@@ -83,7 +79,7 @@ function generateReadme(answer) {
   ### ${answer.tests}
   -------
   ## Questions:
-  ${answers.questions}
+  ${answer.questions}
  ### Contact Information:
  *GitHub Username: ${data.userName}
  *GitHub Email: ${data.userEmail}

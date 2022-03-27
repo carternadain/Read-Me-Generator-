@@ -94,7 +94,7 @@ function writeToFile(fileName, data) {
   const pageReadMe = generatePage(data);
   fs.writeFile(fileName, pageReadMe, err => {
       if (err) throw new Error(err);
-      console.log('README created! Check out README.md in this directory to see it!');
+      console.log('👐  README SUCCESSFUL! click on the README file in this directory');
   });
 };
 
