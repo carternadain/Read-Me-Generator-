@@ -1,9 +1,8 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs =require('fs');
-// const { writeFile, copyFile } = require('./utils/generate-site');
-// const { type } = require('os');
-// const utils = require(“utils”);
+const { writeFile, copyFile } = require('./utils/generate-site');
+const { type } = require('os');
 
 const promptUser = () => {
     return inquirer.prompt([
@@ -23,7 +22,7 @@ const promptUser = () => {
       {
         type: 'input',
         name: 'Description',
-        message: 'tell me a breif summary of your project. (Required)',
+        message: 'tell me a breif summary of your project, what was your reasoning for the project,what problem does it solve. (Required)',
         validate: descriptionInput => {
           if (descriptionInput) {
             return true;
@@ -34,17 +33,17 @@ const promptUser = () => {
         }
       },
       {
-        type: 'confirm',
-        name: 'confirmAbout',
-        message: 'Would you like to enter some information about yourself for an "About" section?',
-        default: true
+        type: 'input',
+        name: 'table of contents ',
+        message: 'optional add a table of contents',
+       
       },
      
       {
         type: 'input',
         name: 'installation',
         message: 'Describe the installation process if any:',
-        when: ({ confirmAbout }) => confirmAbout
+       
       },
       
       {
@@ -52,21 +51,7 @@ const promptUser = () => {
         name: 'usage',
         message: 'What is this project usage for?'
       },
-
-      {
-        type: 'list',
-        name:'liscense',
-        message: 'Chose the appropriate license for this project: ',
-        choices: [
-            'Apache',
-            'Academic',
-            'GNU',
-            'ISC',
-            'MIT',
-            'Mozilla',
-            'Open'
-        ]
-        },
+     
      {
         type: 'input',
         name: 'contributing',
@@ -77,6 +62,7 @@ const promptUser = () => {
         name: 'tests',
         message: 'Is there a test included?'
         },
+
         {
         type: 'input',
         name: 'questions',
@@ -84,36 +70,31 @@ const promptUser = () => {
      },
      {
         type: 'input',
-        name: 'username',
-        message: 'Please enter your GitHub username:'
+        name: 'credits',
+        message: 'list all Collabarators, if any, add links to there github'
         },
      {
-        type: 'input',
-        name: 'email',
-        message: 'Please enter your email:'
-    
-        }
+        type: 'list',
+        name: 'liscense',
+        message: 'Choose which license you used for this project',
+        choices: [
+          'Apache',
+          'Academic',
+          'GNU',
+          'ISC',
+          'MIT',
+          'Mozilla',
+          'Open'
+          ]
+          }
     ])
     .then(responses =>{
         console.log(responses);
     });
 };
-promptUser()
+promptUser();
      
-
-// .then(responses =>{
-//     writeReadMeFile(responses);
-//     console.log(responses);
-// });
-// ])
-// // promptUser()
-// // .then(responses =>{
-// //     writeReadMeFile(responses);
-// //     console.log(responses);
-
-//   promptUser()
-//     .then(promptProject)
-    
+  
 //     // Async function using util.promisify 
 //   async function init() {
 //     try {
