@@ -1,11 +1,11 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs =require('fs');
-const { writeFile, copyFile } = require('./utils/generate-site').default;
+const generatePage = require('./utils/generate-site');
+const file = './readme/README.md'
 
 
-const promptUser = () => {
-    return inquirer.prompt([
+const questions = [
         {
         type: 'input',
         name: 'ProjectHeader',
@@ -85,30 +85,33 @@ const promptUser = () => {
           'Mozilla',
           'Open'
           ]
-          }
-    ])
-    .then(responses =>{
-        console.log(responses);
-    });
+    },
+];    
+   
+
+// TODO: Create a function to write README file
+function writeToFile(fileName, data) {
+  const pageReadMe = generatePage(data);
+  fs.writeFile(fileName, pageReadMe, err => {
+      if (err) throw new Error(err);
+      console.log('README created! Check out README.md in this directory to see it!');
+  });
 };
 
-promptUser()
-.then(promptProject)
-.then(readMe => {
-  return generatePage(readMe);
-})
-.then(pageHTML => {
-  return writeFile(pageHTML);
-})
-.then(writeFileResponse => {
-  console.log(writeFileResponse);
-  return copyFile();
-})
-.then(copyFileResponse => {
-  console.log(copyFileResponse);
-})
-.catch(err => {
-  console.log(err);
-});
-  
+// TODO: Create a function to initialize app
+function init() {
+  inquirer.prompt(questions)
+      .then((answers) => {
+          writeToFile(file, answers)
+      })
+      .catch((error) => {
+          if (error.isTtyError) {
+            // Prompt couldn't be rendered in the current environment
+          } else {
+            // Something else went wrong
+          }
+        });
+};
 
+// Function call to initialize app
+init()
