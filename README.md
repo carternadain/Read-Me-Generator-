@@ -3,6 +3,13 @@
   ### Description
     this project was created to make quick and easy read means , the problem it solves is the developer can spend more time on applications and not there readme files
 
+
+# Technology 
+`Javascript` , `Node` , `Npm packages`, `inquirer`
+
+
+
+
   ## Table of Contents:
   ###  * [Description](#description)
   ###  * [Usage](#usage)
